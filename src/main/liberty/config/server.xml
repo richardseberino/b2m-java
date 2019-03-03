@@ -1,0 +1,16 @@
+<server description="Sample Liberty server">
+
+    <featureManager>
+        <feature>servlet-3.1</feature>
+        <feature>mpMetrics-1.1</feature>
+        <feature>monitor-1.0</feature> 
+   </featureManager>
+
+
+    <httpEndpoint httpPort="9080" httpsPort="9443" host="*" id="defaultHttpEndpoint">
+    
+    </httpEndpoint>
+   <applicationManager autoExpand="true"/>
+   <mpMetrics authentication="false"/> 
+   <application appContext="checkout" contextRoot="/" name="rsapp" id="home" type="war" location="rsapp.war" />    
+</server>
