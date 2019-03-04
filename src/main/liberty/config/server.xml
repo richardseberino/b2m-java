@@ -1,16 +1,14 @@
 <server description="Sample Liberty server">
 
-    <featureManager>
-        <feature>servlet-3.1</feature>
+   <featureManager>
         <feature>mpMetrics-1.1</feature>
-        <feature>monitor-1.0</feature> 
+        <feature>monitor-1.0</feature>
+        <feature>mpHealth-1.0</feature>
    </featureManager>
-
-
-    <httpEndpoint httpPort="9080" httpsPort="9443" host="*" id="defaultHttpEndpoint">
-    
-    </httpEndpoint>
+   <logging traceSpecification="*=info"/>
+   <httpAccessLogging id="accessLogging"/>
+   <httpEndpoint httpPort="9080" httpsPort="9443" host="*" id="defaultHttpEndpoint" accessLoggingRef="accessLogging">
+   </httpEndpoint>
    <applicationManager autoExpand="true"/>
-   <mpMetrics authentication="false"/> 
-   <application appContext="checkout" contextRoot="/" name="rsapp" id="home" type="war" location="rsapp.war" />    
+   <mpMetrics authentication="false"/>
 </server>
