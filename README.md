@@ -1,1 +1,1 @@
-# [Build to Manage - Java application monitoring and logginglab](https://rafal.szypulka.github.io/b2m-java)
+# [Build to Manage - Java application monitoring and logging lab](https://rafal-szypulka.github.io/b2m-java)
