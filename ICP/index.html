@@ -341,8 +341,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#define-kubernets-liveness-probe-for-use-with-built-in-application-health-check" title="Define kubernets liveness probe for use with built-in application health check" class="md-nav__link">
-    Define kubernets liveness probe for use with built-in application health check
+  <a href="#define-kubernetes-liveness-probe-for-use-with-built-in-application-health-check" title="Define kubernetes liveness probe for use with built-in application health check" class="md-nav__link">
+    Define kubernetes liveness probe for use with built-in application health check
   </a>
   
 </li>
@@ -411,8 +411,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#define-kubernets-liveness-probe-for-use-with-built-in-application-health-check" title="Define kubernets liveness probe for use with built-in application health check" class="md-nav__link">
-    Define kubernets liveness probe for use with built-in application health check
+  <a href="#define-kubernetes-liveness-probe-for-use-with-built-in-application-health-check" title="Define kubernetes liveness probe for use with built-in application health check" class="md-nav__link">
+    Define kubernetes liveness probe for use with built-in application health check
   </a>
   
 </li>
@@ -454,7 +454,7 @@
 <p>Now, our Java application container can be deployed on ICP cluster. Make sure the <code>kubectl</code> client is configured to connect to your ICP cluster. More information <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.1/manage_cluster/install_kubectl.html">here</a>.</p>
 <p>The <code>b2m-java</code> application container image has been uploaded to public Docker Hub: <code>rszypulka/b2m-java</code>. You can also upload it to the local ICP Container Registry.</p>
 <h3 id="deploy-b2m-java-application-to-the-icp-cluster">Deploy b2m-java application to the ICP cluster<a class="headerlink" href="#deploy-b2m-java-application-to-the-icp-cluster" title="Permanent link">&para;</a></h3>
-<p>Review provided YAML file <code>b2m-java-icp.yml</code> and use it to deploy the applcation to IBM Cloud Private cluster. <code>b2m-java</code> deployment object will pull application image container <code>rszypulka/b2m-java</code> from Docker Hub.</p>
+<p>Review provided YAML file <code>b2m-java-icp.yml</code> and use it to deploy the application to IBM Cloud Private cluster. <code>b2m-java</code> deployment object will pull application image container <code>rszypulka/b2m-java</code> from Docker Hub.</p>
 <div class="codehilite"><pre><span></span>kubectl apply -f b2m-java-icp.yml
 </pre></div>
 
@@ -500,7 +500,7 @@ b2m-java   1         1         1            1           4h
 
 <p>Use the <code>&lt;application_url&gt;</code> collected in previous chapter.</p>
 <p>Access the ICP Grafana console and verify it properly shows metrics.</p>
-<h2 id="define-kubernets-liveness-probe-for-use-with-built-in-application-health-check">Define kubernets liveness probe for use with built-in application health check<a class="headerlink" href="#define-kubernets-liveness-probe-for-use-with-built-in-application-health-check" title="Permanent link">&para;</a></h2>
+<h2 id="define-kubernetes-liveness-probe-for-use-with-built-in-application-health-check">Define kubernetes liveness probe for use with built-in application health check<a class="headerlink" href="#define-kubernetes-liveness-probe-for-use-with-built-in-application-health-check" title="Permanent link">&para;</a></h2>
 <p>The provided <code>b2m-java-icp.yml</code> deployment YAML file defines the <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#define-a-liveness-http-request">liveness probe</a> that use the implemented <code>/health</code> route.</p>
 <div class="codehilite"><pre><span></span>   livenessProbe:
      httpGet:
