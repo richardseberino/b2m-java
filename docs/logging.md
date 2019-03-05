@@ -2,7 +2,7 @@ A production service should have both logging and monitoring. Monitoring provide
 
 Logs provide visibility into the behavior of a running app, they are one of the most fundamental tools for debugging and finding issues within your application. If structured correctly, logs can contain a wealth of information about a specific event. Logs can tell us not only when the event took place, but also provide us with details as to the root cause. Therefore, it is important that the log entries are readable to humans and machines. 
 
-According to the [12-factor](https://12factor.net/) application guidelines, logs are the stream of aggregated, time-ordered events. A twelve-factor app never concerns itself with routing or storage of its output stream. It should not attempt to write to or manage logfiles. Instead, each running process writes its event stream, unbuffered, to stdout. If you deviate from these guidelines, make sure that you address the operational needs for logfiles, such as logging to local files and applying log rotation policies.
+According to the [12-factor](https://12factor.net/) application guidelines, logs are the stream of aggregated, time-ordered events. A twelve-factor app never concerns itself with routing or storage of its output stream. It should not attempt to write to or manage log files. Instead, each running process writes its event stream, unbuffered, to stdout. If you deviate from these guidelines, make sure that you address the operational needs for log files, such as logging to local files and applying log rotation policies.
 
 
 ## Configure the logging library
@@ -39,7 +39,7 @@ Uncomment the `logger` calls within `src/main/java/application/rsapp/checkout.ja
 
 Look for the complete code with logging in `final/checkout.complete.java` in case of problems. 
 
-We recommend to format logs in JSON, so it will be easily readible for log analytics software like Elastic stack. For WebSphere Libety Profile it can be defined globally via environment variables. More information [here](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html).
+We recommend to format logs in JSON, so it will be easily readable for log analytics software like Elastic stack. For WebSphere Liberty Profile it can be defined globally via environment variables. More information [here](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html).
 
 Create a `server.env` file within `b2m-java` directory with the following contents:
 
@@ -65,7 +65,7 @@ Review the `src/main/liberty/config/server.xml` file. These lines are related to
 
  `traceSpecification` specifies the trace level and `httpAccessLogging` enables WLP access log (disabled by default).
 
-Comapare your changes to `src/main/java/application/rsapp/checkout.java` with `final/checkout-complete.java`.
+Compare your changes to `src/main/java/application/rsapp/checkout.java` with `final/checkout-complete.java`.
 Verify your `Dockerfile` with `final/Dockerfile`.
 
 Re-build the `target/rsapp.war` file with:

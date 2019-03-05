@@ -22,7 +22,7 @@ The `b2m-java` application container image has been uploaded to public Docker Hu
 
 ### Deploy b2m-java application to the ICP cluster
 
-Review provided YAML file `b2m-java-icp.yml` and use it to deploy the applcation to IBM Cloud Private cluster. `b2m-java` deployment object will pull application image container `rszypulka/b2m-java` from Docker Hub.
+Review provided YAML file `b2m-java-icp.yml` and use it to deploy the application to IBM Cloud Private cluster. `b2m-java` deployment object will pull application image container `rszypulka/b2m-java` from Docker Hub.
 
 ```
 kubectl apply -f b2m-java-icp.yml
@@ -81,7 +81,7 @@ Use the `<application_url>` collected in previous chapter.
 Access the ICP Grafana console and verify it properly shows metrics.
 
 
-## Define kubernets liveness probe for use with built-in application health check
+## Define kubernetes liveness probe for use with built-in application health check
 
 The provided `b2m-java-icp.yml` deployment YAML file defines the [liveness probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#define-a-liveness-http-request) that use the implemented `/health` route.
 

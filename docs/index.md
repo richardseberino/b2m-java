@@ -2,7 +2,7 @@
 
 During this lab we will instrument a sample java application for logging to use with log analytics tools like [Elastic stack](http://elastic.co) as well as for monitoring with [Prometheus](https://prometheus.io) and [Grafana](https://grafana.com).
 
-Instrumentation of the aplication code for monitoring and logging is part of the general concept we call **Build to Manage**. It specifies the practice of activities developers can do in order to provide manageability aspects as part of an application release.
+Instrumentation of the application code for monitoring and logging is part of the general concept we call **Build to Manage**. It specifies the practice of activities developers can do in order to provide manageability aspects as part of an application release.
 
 ## Lab outline
 
@@ -50,14 +50,13 @@ cd b2m-java
 ```
 
 Review the application code in `src/main/java/application/rsapp/checkout.java`. 
-This minimalistic application simulates a transaction with randon response time on the following URL:
+This minimalistic application simulates a transaction with random response time on the following URL:
 
 ```
 http://localhost:9080/rsapp/checkout
 ```
 
 About 5% of requests should return error and 500 HTTP response code.
-
 
 Run:
 

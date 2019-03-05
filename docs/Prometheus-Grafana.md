@@ -58,7 +58,7 @@ Verify the prometheus datasource configuration in Grafana. If it was not already
 Grafana Dashboard to [import](http://docs.grafana.org/reference/export_import/#importing-a-dashboard): `ibm-open-liberty-grafana-dashboard.json`
 
 Expected views:
-CPU & Memory utilization for Libety Profile:
+CPU & Memory utilization for Liberty Profile:
 ![](images/prometheus-liberty1.png)
 
 Servlet requests volume and response time:
