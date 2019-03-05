@@ -386,7 +386,7 @@
                 
                 <p>A production service should have both logging and monitoring. Monitoring provides a real-time and historical view on the system and application state, and alerts you in case a situation is met. In most cases, a monitoring alert is simply a trigger for you to start an investigation. Monitoring shows the symptoms of problems. Logs provide details and state on individual transactions, so you can fully understand the cause of problems.</p>
 <p>Logs provide visibility into the behavior of a running app, they are one of the most fundamental tools for debugging and finding issues within your application. If structured correctly, logs can contain a wealth of information about a specific event. Logs can tell us not only when the event took place, but also provide us with details as to the root cause. Therefore, it is important that the log entries are readable to humans and machines. </p>
-<p>According to the <a href="https://12factor.net/">12-factor</a> application guidelines, logs are the stream of aggregated, time-ordered events. A twelve-factor app never concerns itself with routing or storage of its output stream. It should not attempt to write to or manage logfiles. Instead, each running process writes its event stream, unbuffered, to stdout. If you deviate from these guidelines, make sure that you address the operational needs for logfiles, such as logging to local files and applying log rotation policies.</p>
+<p>According to the <a href="https://12factor.net/">12-factor</a> application guidelines, logs are the stream of aggregated, time-ordered events. A twelve-factor app never concerns itself with routing or storage of its output stream. It should not attempt to write to or manage log files. Instead, each running process writes its event stream, unbuffered, to stdout. If you deviate from these guidelines, make sure that you address the operational needs for log files, such as logging to local files and applying log rotation policies.</p>
 <h2 id="configure-the-logging-library">Configure the logging library<a class="headerlink" href="#configure-the-logging-library" title="Permanent link">&para;</a></h2>
 <p>Java takes a customizable and extensible approach to logging. While Java provides a basic logging API through the <code>java.util.logging</code> package, you can easily use one or more alternative logging solutions instead. In this lab we will use <code>java.util.logging</code>.</p>
 <h2 id="example-implementation-of-logging">Example implementation of logging<a class="headerlink" href="#example-implementation-of-logging" title="Permanent link">&para;</a></h2>
@@ -415,7 +415,7 @@
 
 <p>Uncomment the <code>logger</code> calls within <code>src/main/java/application/rsapp/checkout.java</code>.</p>
 <p>Look for the complete code with logging in <code>final/checkout.complete.java</code> in case of problems. </p>
-<p>We recommend to format logs in JSON, so it will be easily readible for log analytics software like Elastic stack. For WebSphere Libety Profile it can be defined globally via environment variables. More information <a href="https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html">here</a>.</p>
+<p>We recommend to format logs in JSON, so it will be easily readable for log analytics software like Elastic stack. For WebSphere Liberty Profile it can be defined globally via environment variables. More information <a href="https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html">here</a>.</p>
 <p>Create a <code>server.env</code> file within <code>b2m-java</code> directory with the following contents:</p>
 <div class="codehilite"><pre><span></span>WLP_LOGGING_CONSOLE_FORMAT=json
 WLP_LOGGING_CONSOLE_SOURCE=message,accessLog,ffdc,trace
@@ -437,7 +437,7 @@ WLP_LOGGING_CONSOLE_LOGLEVEL=info
 
  `traceSpecification` specifies the trace level and `httpAccessLogging` enables WLP access log (disabled by default).
 
-Comapare your changes to `src/main/java/application/rsapp/checkout.java` with `final/checkout-complete.java`.
+Compare your changes to `src/main/java/application/rsapp/checkout.java` with `final/checkout-complete.java`.
 Verify your `Dockerfile` with `final/Dockerfile`.
 
 Re-build the `target/rsapp.war` file with:
