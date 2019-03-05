@@ -38,7 +38,7 @@
     
     
       
-        <title>3. Node.js monitoring instrumentation - Build to Manage - Node.js application monitoring and logging lab</title>
+        <title>3. Java application monitoring instrumentation - Build to Manage - Java application monitoring and logging lab</title>
       
     
     
@@ -102,7 +102,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="ttps://github.ibm.com/rafal-szypulka/b2m-nodejs/docs" title="Build to Manage - Node.js application monitoring and logging lab" class="md-header-nav__button md-logo">
+        <a href="ttps://github.com/rafal-szypulka/b2m-java/docs" title="Build to Manage - Java application monitoring and logging lab" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -116,10 +116,10 @@
           
             
               <span class="md-header-nav__topic">
-                Build to Manage - Node.js application monitoring and logging lab
+                Build to Manage - Java application monitoring and logging lab
               </span>
               <span class="md-header-nav__topic">
-                3. Node.js monitoring instrumentation
+                3. Java application monitoring instrumentation
               </span>
             
           
@@ -164,7 +164,7 @@
   
 
 
-  <a href="https://github.ibm.com/rafal-szypulka/b2m-nodejs" title="Go to repository" class="md-source" data-md-source="github">
+  <a href="https://github.com/rafal-szypulka/b2m-java/" title="Go to repository" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -173,7 +173,7 @@
       </div>
     
     <div class="md-source__repository">
-      Github
+      GitHub
     </div>
   </a>
 
@@ -198,12 +198,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="ttps://github.ibm.com/rafal-szypulka/b2m-nodejs/docs" title="Build to Manage - Node.js application monitoring and logging lab" class="md-nav__button md-logo">
+    <a href="ttps://github.com/rafal-szypulka/b2m-java/docs" title="Build to Manage - Java application monitoring and logging lab" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
     </a>
-    Build to Manage - Node.js application monitoring and logging lab
+    Build to Manage - Java application monitoring and logging lab
   </label>
   
     <div class="md-nav__source">
@@ -213,7 +213,7 @@
   
 
 
-  <a href="https://github.ibm.com/rafal-szypulka/b2m-nodejs" title="Go to repository" class="md-source" data-md-source="github">
+  <a href="https://github.com/rafal-szypulka/b2m-java/" title="Go to repository" class="md-source" data-md-source="github">
     
       <div class="md-source__icon">
         <svg viewBox="0 0 24 24" width="24" height="24">
@@ -222,7 +222,7 @@
       </div>
     
     <div class="md-source__repository">
-      Github
+      GitHub
     </div>
   </a>
 
@@ -248,8 +248,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../logging/" title="2. Node.js logging and Elastic stack integration" class="md-nav__link">
-      2. Node.js logging and Elastic stack integration
+    <a href="../logging/" title="2. WLP logging and Elastic stack integration" class="md-nav__link">
+      2. WLP logging and Elastic stack integration
     </a>
   </li>
 
@@ -267,11 +267,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        3. Node.js monitoring instrumentation
+        3. Java application monitoring instrumentation
       </label>
     
-    <a href="./" title="3. Node.js monitoring instrumentation" class="md-nav__link md-nav__link--active">
-      3. Node.js monitoring instrumentation
+    <a href="./" title="3. Java application monitoring instrumentation" class="md-nav__link md-nav__link--active">
+      3. Java application monitoring instrumentation
     </a>
     
       
@@ -331,18 +331,6 @@
   </li>
 
     
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../about/" title="About" class="md-nav__link">
-      About
-    </a>
-  </li>
-
-    
   </ul>
 </nav>
                   </div>
@@ -391,8 +379,10 @@
             <article class="md-content__inner md-typeset">
               
                 
+                  <a href="https://github.com/rafal-szypulka/b2m-java/edit/master/docs/monitoring-instrumentation.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
-                  <h1>3. Node.js monitoring instrumentation</h1>
+                
+                  <h1>3. Java application monitoring instrumentation</h1>
                 
                 <h2 id="what-to-instrument-the-red-method">What to instrument - the RED method<a class="headerlink" href="#what-to-instrument-the-red-method" title="Permanent link">&para;</a></h2>
 <p>There are a number of ways to instrument the java microservice code for monitoring metrics collection. In this lab we will use the WLP provided features: <code>mpMetrics-1.1</code> and <code>monitor-1.0</code> These features provides a <code>/metrics</code> REST interface that conforms to the or MicroProfile metrics 1.1 specification. Application developers can add their own custom metrics, by using the MicroProfile metrics API, alongside the metrics provided by Liberty. More information <a href="https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_mp_metrics_monitor.html">here</a> </p>
@@ -463,7 +453,7 @@ base:gc_scavenge_time_seconds 0.463
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../logging/" title="2. Node.js logging and Elastic stack integration" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../logging/" title="2. WLP logging and Elastic stack integration" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -472,7 +462,7 @@ base:gc_scavenge_time_seconds 0.463
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                2. Node.js logging and Elastic stack integration
+                2. WLP logging and Elastic stack integration
               </span>
             </div>
           </a>
