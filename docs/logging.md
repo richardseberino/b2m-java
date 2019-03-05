@@ -59,9 +59,9 @@ Review the `src/main/liberty/config/server.xml` file. These lines are related to
 ```xml
   <logging traceSpecification="*=info"/>
    <httpAccessLogging id="accessLogging"/>
-   <httpEndpoint httpPort="9080" httpsPort="9443" host="*" id="defaultHttpEndpoint" accessLoggingRef="accessLogging">
+   <httpEndpoint httpPort="9080" httpsPort="9443" host="*" id="defaultHttpEndpoint" accessLoggingRef="accessLogging"/>
    </httpEndpoint>
- ```
+```
 
  `traceSpecification` specifies the trace level and `httpAccessLogging` enables WLP access log (disabled by default).
 
