@@ -54,6 +54,8 @@ and add instruction to copy this file to the application container to `Dockerfil
 ```
 COPY server.env /config/
 ```
+Check the `final/Dockerfile` in case of problems.
+
 Review the `src/main/liberty/config/server.xml` file. These lines are related to logging configuration:
 
 ```xml
@@ -65,7 +67,7 @@ Review the `src/main/liberty/config/server.xml` file. These lines are related to
 
  `traceSpecification` specifies the trace level and `httpAccessLogging` enables WLP access log (disabled by default).
 
-Compare your changes to `src/main/java/application/rsapp/checkout.java` with `final/checkout-complete.java`.
+Remember to compare your changes to `src/main/java/application/rsapp/checkout.java` with `final/checkout-complete.java`.
 Verify your `Dockerfile` with `final/Dockerfile`.
 
 Re-build the `target/rsapp.war` file with:
@@ -76,7 +78,7 @@ mvn clean install
 
 ## Create a Docker image for java application
 
-Use provided `Dockerfile` to build application container:
+Use modified `Dockerfile` to build application container:
 
 ```
 cd b2m-java
@@ -88,16 +90,11 @@ The following procedure shows how to send the application logs to the local Elas
 
 ### Deploy a local Elastic stack with Docker Compose
 
-Steps 1-3 are already done for the lab VM and `docker-elk` repo is located in `/root/docker-elk`.
+During this lab we will run the Elastic Stack (Elasticsearch, Logstash, Kibana) in the Docker Compose.
+Configuration for this lab is based on https://github.com/deviantony/docker-elk.
+Elastic stack docker compose project in located `/root/docker-elk`
 
-1). Clone the `docker-elk` repository from Github:
-
-```
-cd
-git clone https://github.com/deviantony/docker-elk
-```
-
-2). Replace the Logstash configuration file `docker-elk/logstash/pipeline/logstash.conf` with the following code:
+Briefly review the simple logstash configuration we use for this lab: `/root/docker-elk/logstash/pipeline/logstash.conf`:
 
 ```
 input {
@@ -106,6 +103,7 @@ input {
 
 filter {
     json { source => "message" }
+    #we need level field in a numeric format
     mutate {
      gsub => [
       "level", "info", 6,
@@ -127,21 +125,7 @@ output {
 
 The above will reconfigure logstash to use `gelf` (Graylog Extended Log Format) protocol supported by Docker log driver, so we can directly stream application logs to Logstash using `gelf`.
 
-3). Edit `docker-elk\docker-compose.yml` and modify one line:
-
-from:
-
-```
-      - "5000:5000"
-```
-to
-```
-      - "5000:5000\udp"
-```
-
-The change above will tell `docker-compose` to expose `udp` port `5000` instead of default `tcp` (`gelf` protocol uses `udp`).
-
-4). Start Elastic stack:
+1). Start Elastic stack:
    
 ```
 cd ~/docker-elk
@@ -154,7 +138,7 @@ Creating docker-elk_elasticsearch_1 ... done
 Creating docker-elk_kibana_1        ... done
 Creating docker-elk_logstash_1      ... done
 ```
-5). Verify you can access Kibana on `http://localhost:5601`
+2). Verify you can access Kibana on `http://localhost:5601`
 
 ### Start node.js application container and forward logs to Elastic stack
 

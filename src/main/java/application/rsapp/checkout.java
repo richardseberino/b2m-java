@@ -27,6 +27,7 @@ public class checkout extends HttpServlet {
 
         if ( errorState ) {
           msg = "RSAP0001I: Transaction OK.";
+          //logger.severe(msg);
           response.setContentType("application/json");
 		
           PrintWriter pw = response.getWriter();
@@ -34,8 +35,8 @@ public class checkout extends HttpServlet {
           pw.flush();
 
         } else {
-          msg = "Severe problem detected.";
           msg = "RSAP0010E: Severe problem detected.";
+          //logger.severe(msg);
           response.sendError(500, msg);
         }
 	}

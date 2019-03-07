@@ -28,13 +28,13 @@ Logon to GitHub using your user and password.
 Access the following repository and click `Fork`.
 
 ```
-https://github.com/rafal-szypulka/btm-java
+https://github.com/rafal-szypulka/b2m-java
 ```
 
 From now on you will work on your own fork of the application project
 
 ```
-https://github.com/<username>/btm-java
+https://github.com/<username>/b2m-java
 ```
 
 Clone `b2m-java` lab repository using:
@@ -58,7 +58,7 @@ http://localhost:9080/rsapp/checkout
 
 About 5% of requests should return error and 500 HTTP response code.
 
-Run:
+Run the following command to build the java application and package it into `target/rsapp.war`:
 
 ```
 mvn clean install
@@ -82,3 +82,5 @@ or:
 ```
 {"error":"RSAP0010E: Severe problem detected"}
 ```
+
+Refresh the page a couple of times and you should see random transaction response times. 
