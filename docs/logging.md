@@ -73,6 +73,7 @@ Verify your `Dockerfile` with `final/Dockerfile`.
 Re-build the `target/rsapp.war` file with:
 
 ```
+cd b2m-java
 mvn clean install
 ```
 
@@ -138,11 +139,11 @@ Creating docker-elk_elasticsearch_1 ... done
 Creating docker-elk_kibana_1        ... done
 Creating docker-elk_logstash_1      ... done
 ```
-2). Verify you can access Kibana on `http://localhost:5601`
+2). Verify you can access Kibana on `http://localhost:5601` and you can see application log messages coming from `btm-java` container. 
 
-### Start node.js application container and forward logs to Elastic stack
+### Start the node.js application container and forward logs to Elastic stack
 
-Make sure the Start application container with this command:
+Start the application container with this command:
 
 ```
 docker run --name btm-java -d -p 9080:9080 --log-driver=gelf \
@@ -153,15 +154,23 @@ Simulate a couple fo transactions using `Firefox` or `curl` by accessing `http:/
 
 In the lab vm environment, the Elastic stack has been preconfigured, so the example Dashboard and Visualizations should be available in Kibana out of the box.
 
-You can also import Kibana configuration using provided Kibana dashboards: `ibm-open-liberty-kibana5-problems-dashboard.json` and `ibm-open-liberty-kibana5-problems-dashboard.json`
-
-- Go to Kibana: `http://localhost:5601`
-- Click on Management -> Saved Objects -> Import
-- Select `btm-nodejs-kibana.json`
-
 Simulate a couple of transactions using `Firefox` or `curl` by accessing `http://localhost:9080/rsapp/checkout` and check the Kibana dashboard: `Liberty Traffic`:
 
 ![](images/kibana-liberty-traffic.png)
 and `Liberty problems`:
 
 ![](images/kibana-liberty-problems.png)
+
+In case of problems, you can also import Kibana configuration using provided Kibana dashboards: `ibm-open-liberty-kibana5-problems-dashboard.json` and `ibm-open-liberty-kibana5-problems-dashboard.json`
+
+- Go to Kibana: `http://localhost:5601`
+- Click on Management -> Saved Objects -> Import
+- Select `btm-nodejs-kibana.json`
+
+Commit your changes to your GiHub repository:
+
+```
+cd ~/b2m-java
+git commit -am "I added logging to my app!"
+git push
+```

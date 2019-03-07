@@ -426,12 +426,12 @@
 <h2 id="review-the-application-code-and-run-it-locally">Review the application code and run it locally<a class="headerlink" href="#review-the-application-code-and-run-it-locally" title="Permanent link">&para;</a></h2>
 <p>Logon to GitHub using your user and password.
 Access the following repository and click <code>Fork</code>.</p>
-<div class="codehilite"><pre><span></span>https://github.com/rafal-szypulka/btm-java
+<div class="codehilite"><pre><span></span>https://github.com/rafal-szypulka/b2m-java
 </pre></div>
 
 
 <p>From now on you will work on your own fork of the application project</p>
-<div class="codehilite"><pre><span></span>https://github.com/&lt;username&gt;/btm-java
+<div class="codehilite"><pre><span></span>https://github.com/&lt;username&gt;/b2m-java
 </pre></div>
 
 
@@ -452,7 +452,7 @@ This minimalistic application simulates a transaction with random response time 
 
 
 <p>About 5% of requests should return error and 500 HTTP response code.</p>
-<p>Run:</p>
+<p>Run the following command to build the java application and package it into <code>target/rsapp.war</code>:</p>
 <div class="codehilite"><pre><span></span>mvn clean install
 </pre></div>
 
@@ -472,6 +472,9 @@ The expected output is JSON formatted:</p>
 <p>or:</p>
 <div class="codehilite"><pre><span></span>{&quot;error&quot;:&quot;RSAP0010E: Severe problem detected&quot;}
 </pre></div>
+
+
+<p>Refresh the page a couple of times and you should see random transaction response times. </p>
                 
                   
                 

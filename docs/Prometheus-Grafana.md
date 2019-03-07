@@ -1,28 +1,24 @@
 ### Deploy a local Prometheus and Grafana stack with Docker Compose
 
->Step 1 is already done for the lab VM and `prometheus` repo is located in `/root/prometheus`.
+During this lab we will run the Prometheus and Grafana in  Docker Compose.
+Configuration for this lab is based on [https://github.com/vegasbrianc/prometheus](https://github.com/vegasbrianc/prometheus).
+Prometheus docker compose project is located `/root/prometheus`
 
-1). Clone the `prometheus` docker compose repository from Github:
-
-```
-git clone https://github.com/vegasbrianc/prometheus
-```
-
-2). Add scraping job definition to the Prometheus configuration file `prometheus/prometheus/prometheus.yml` by adding (uncommenting in the lab VM) the following code within `scrape_config` section:
+1). Add scraping job definition to the Prometheus configuration file `prometheus/prometheus/prometheus.yml` by adding (uncommenting in the lab VM) the following code within `scrape_config` section:
 
 ```
   - job_name: 'btm-java'
-    scrape_interval: 5s
+    scrape_interval: 20s
     static_configs:
     - targets: ['xxx.xxx.xxx.xxx:9080']
       labels:
-        service: 'b2m-java'
+        app: 'b2m-java'
         group: 'production'
 
 ```
 replace xxx.xxx.xxx.xxx with your own host machine's IP.
 
-3). Start Prometheus & Grafana stack:
+2). Start Prometheus & Grafana stack:
    
 ```
 cd ~/prometheus
@@ -45,9 +41,13 @@ Verify that Prometheus started via: [http://localhost:9090](http://localhost:909
 
 ## Set the Prometheus datasource in Grafana
 
+Logon to Grafana via `http://localhost:3000`
+- user: admin
+- password: foobar
+  
 Verify the prometheus datasource configuration in Grafana. If it was not already configured, [create](http://docs.grafana.org/features/datasources/prometheus/#adding-the-data-source-to-grafana) a Grafana datasource with this settings:
 
-+ name: prometheus
++ name: Prometheus
 + type: prometheus
 + url: http://localhost:9090
 + access: browser
