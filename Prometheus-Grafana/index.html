@@ -399,27 +399,22 @@
                   <h1>4. Prometheus and Grafana configuration</h1>
                 
                 <h3 id="deploy-a-local-prometheus-and-grafana-stack-with-docker-compose">Deploy a local Prometheus and Grafana stack with Docker Compose<a class="headerlink" href="#deploy-a-local-prometheus-and-grafana-stack-with-docker-compose" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p>Step 1 is already done for the lab VM and <code>prometheus</code> repo is located in <code>/root/prometheus</code>.</p>
-</blockquote>
-<p>1). Clone the <code>prometheus</code> docker compose repository from Github:</p>
-<div class="codehilite"><pre><span></span>git clone https://github.com/vegasbrianc/prometheus
-</pre></div>
-
-
-<p>2). Add scraping job definition to the Prometheus configuration file <code>prometheus/prometheus/prometheus.yml</code> by adding (uncommenting in the lab VM) the following code within <code>scrape_config</code> section:</p>
+<p>During this lab we will run the Prometheus and Grafana in  Docker Compose.
+Configuration for this lab is based on <a href="https://github.com/vegasbrianc/prometheus">https://github.com/vegasbrianc/prometheus</a>.
+Prometheus docker compose project is located <code>/root/prometheus</code></p>
+<p>1). Add scraping job definition to the Prometheus configuration file <code>prometheus/prometheus/prometheus.yml</code> by adding (uncommenting in the lab VM) the following code within <code>scrape_config</code> section:</p>
 <div class="codehilite"><pre><span></span>  - job_name: &#39;btm-java&#39;
-    scrape_interval: 5s
+    scrape_interval: 20s
     static_configs:
     - targets: [&#39;xxx.xxx.xxx.xxx:9080&#39;]
       labels:
-        service: &#39;b2m-java&#39;
+        app: &#39;b2m-java&#39;
         group: &#39;production&#39;
 </pre></div>
 
 
 <p>replace xxx.xxx.xxx.xxx with your own host machine's IP.</p>
-<p>3). Start Prometheus &amp; Grafana stack:</p>
+<p>2). Start Prometheus &amp; Grafana stack:</p>
 <div class="codehilite"><pre><span></span>cd ~/prometheus
 docker-compose up -d
 </pre></div>
@@ -438,9 +433,12 @@ Creating prometheus_grafana_1       ... done
 
 <p>Verify that Prometheus started via: <a href="http://localhost:9090/graph">http://localhost:9090</a></p>
 <h2 id="set-the-prometheus-datasource-in-grafana">Set the Prometheus datasource in Grafana<a class="headerlink" href="#set-the-prometheus-datasource-in-grafana" title="Permanent link">&para;</a></h2>
+<p>Logon to Grafana via <code>http://localhost:3000</code>
+- user: admin
+- password: foobar</p>
 <p>Verify the prometheus datasource configuration in Grafana. If it was not already configured, <a href="http://docs.grafana.org/features/datasources/prometheus/#adding-the-data-source-to-grafana">create</a> a Grafana datasource with this settings:</p>
 <ul>
-<li>name: prometheus</li>
+<li>name: Prometheus</li>
 <li>type: prometheus</li>
 <li>url: http://localhost:9090</li>
 <li>access: browser</li>

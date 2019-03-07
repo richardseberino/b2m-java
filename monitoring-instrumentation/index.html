@@ -93,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#what-to-instrument-the-red-method" tabindex="1" class="md-skip">
+      <a href="#mpmetrics-and-monitor-features-of-liberty-profile" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -283,8 +283,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-to-instrument-the-red-method" title="What to instrument - the RED method" class="md-nav__link">
-    What to instrument - the RED method
+  <a href="#mpmetrics-and-monitor-features-of-liberty-profile" title="mpMetrics and monitor features of Liberty Profile" class="md-nav__link">
+    mpMetrics and monitor features of Liberty Profile
   </a>
   
 </li>
@@ -350,8 +350,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-to-instrument-the-red-method" title="What to instrument - the RED method" class="md-nav__link">
-    What to instrument - the RED method
+  <a href="#mpmetrics-and-monitor-features-of-liberty-profile" title="mpMetrics and monitor features of Liberty Profile" class="md-nav__link">
+    mpMetrics and monitor features of Liberty Profile
   </a>
   
 </li>
@@ -384,7 +384,7 @@
                 
                   <h1>3. Java application monitoring instrumentation</h1>
                 
-                <h2 id="what-to-instrument-the-red-method">What to instrument - the RED method<a class="headerlink" href="#what-to-instrument-the-red-method" title="Permanent link">&para;</a></h2>
+                <h2 id="mpmetrics-and-monitor-features-of-liberty-profile">mpMetrics and monitor features of Liberty Profile<a class="headerlink" href="#mpmetrics-and-monitor-features-of-liberty-profile" title="Permanent link">&para;</a></h2>
 <p>There are a number of ways to instrument the java microservice code for monitoring metrics collection. In this lab we will use the WLP provided features: <code>mpMetrics-1.1</code> and <code>monitor-1.0</code> These features provides a <code>/metrics</code> REST interface that conforms to the or MicroProfile metrics 1.1 specification. Application developers can add their own custom metrics, by using the MicroProfile metrics API, alongside the metrics provided by Liberty. More information <a href="https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_mp_metrics_monitor.html">here</a> </p>
 <h2 id="enable-prometheus-metrics-for-the-wlp-application">Enable Prometheus metrics for the WLP application<a class="headerlink" href="#enable-prometheus-metrics-for-the-wlp-application" title="Permanent link">&para;</a></h2>
 <p>Go to the directory where our <code>b2m-java</code> application has been cloned.</p>
@@ -401,7 +401,8 @@
 
 
 <p>Test the application locally:</p>
-<div class="codehilite"><pre><span></span>mvn clean install
+<div class="codehilite"><pre><span></span>cd b2m-java
+mvn clean install
 mvn liberty:run-server
 </pre></div>
 
@@ -432,6 +433,13 @@ base:gc_scavenge_time_seconds 0.463
 
 <p>Stop the WLP server with <code>ctrl-c</code> and build the docker image using provided <code>Dockerfile</code>:</p>
 <div class="codehilite"><pre><span></span>docker build -t b2m-java .
+</pre></div>
+
+
+<p>Commit your changes to your GiHub repository:</p>
+<div class="codehilite"><pre><span></span>cd ~/b2m-java
+git commit -am &quot;I added monitoring instrumentation to my app!&quot;
+git push
 </pre></div>
                 
                   
