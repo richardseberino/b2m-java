@@ -1,6 +1,6 @@
 site_name: Build to Manage - Java application monitoring and logging lab
 repo_url: https://github.com/rafal-szypulka/b2m-java
-site_url: ttps://github.com/rafal-szypulka/b2m-java/docs
+site_url: https://rafal-szypulka.github.io/b2m-java
 nav:
     - 1. Introduction: index.md
     - 2. WLP logging and Elastic stack integration: logging.md
