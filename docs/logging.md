@@ -139,7 +139,7 @@ Creating docker-elk_elasticsearch_1 ... done
 Creating docker-elk_kibana_1        ... done
 Creating docker-elk_logstash_1      ... done
 ```
-2). Verify you can access Kibana on `http://localhost:5601` and you can see application log messages coming from `btm-java` container. 
+2). Verify you can access Kibana on `http://localhost:5601`.
 
 ### Start the node.js application container and forward logs to Elastic stack
 
