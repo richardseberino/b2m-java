@@ -27,7 +27,7 @@ public class checkout extends HttpServlet {
 
     if (errorState) {
       msg = "RSAP0001I: Transaction OK.";
-      // logger.severe(msg);
+      // logger.info(msg);
       response.setContentType("application/json");
 
       PrintWriter pw = response.getWriter();

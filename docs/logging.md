@@ -73,7 +73,7 @@ Verify your `Dockerfile` with `final/Dockerfile`.
 Re-build the `target/rsapp.war` file with:
 
 ```
-cd b2m-java
+cd ~/b2m-java
 mvn clean install
 ```
 
@@ -82,7 +82,7 @@ mvn clean install
 Use modified `Dockerfile` to build application container:
 
 ```
-cd b2m-java
+cd ~/b2m-java
 docker build -t b2m-java .
 ```
 
@@ -175,5 +175,11 @@ git config --global user.email "<your_github_email>"
 git commit -am "I added logging to my app!"
 git push
 ```
-
 Access your Github via web browser and verify that you see recent updates and history of changes.
+
+Stop and remove the java app Docker container before starting the next exercise.
+
+```
+docker stop btm-java
+docker rm btm-java
+```

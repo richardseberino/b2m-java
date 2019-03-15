@@ -3,7 +3,6 @@
 There are a number of ways to instrument the java microservice code for monitoring metrics collection. In this lab we will use the WLP provided features: `mpMetrics-1.1` and `monitor-1.0` These features provides a `/metrics` REST interface that conforms to the or MicroProfile metrics 1.1 specification. Application developers can add their own custom metrics, by using the MicroProfile metrics API, alongside the metrics provided by Liberty. More information [here](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_mp_metrics_monitor.html) 
 
 
-
 ## Enable Prometheus metrics for the WLP application
 
 Go to the directory where our `b2m-java` application has been cloned.
@@ -12,7 +11,7 @@ Go to the directory where our `b2m-java` application has been cloned.
 cd ~/b2m-java
 ```
 
-and edit the app server configuration file `src/main/liberty/config/server.xml`.
+and edit the application server configuration file `src/main/liberty/config/server.xml`.
 
 Uncomment these three lines:
 
@@ -25,7 +24,7 @@ Uncomment these three lines:
 Test the application locally:
 
 ```
-cd b2m-java
+cd ~/b2m-java
 mvn clean install
 mvn liberty:run-server
 ```
@@ -59,7 +58,11 @@ base:gc_scavenge_time_seconds 0.463
 Stop the WLP server with `ctrl-c` and build the docker image using provided `Dockerfile`:
 
 ```
+docker stop btm-java
+docker rm btm-java
 docker build -t b2m-java .
+docker run --name btm-java -d -p 9080:9080 --log-driver=gelf \
+--log-opt gelf-address=udp://localhost:5000 b2m-java
 ```
 
 Commit your changes to your GiHub repository:

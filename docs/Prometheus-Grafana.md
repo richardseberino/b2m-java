@@ -16,12 +16,13 @@ Prometheus docker compose project is located `/root/prometheus`
         group: 'production'
 
 ```
-replace xxx.xxx.xxx.xxx with your own host machine's IP.
+replace xxx.xxx.xxx.xxx with your own host machine's IP. In the Skytap lab VM, the IP address should be `10.0.0.1`.
 
 2). Start Prometheus & Grafana stack:
    
 ```
 cd ~/prometheus
+docker-compose down
 docker-compose up -d
 ```
 Expected output:
