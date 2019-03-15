@@ -37,10 +37,11 @@ From now on you will work on your own fork of the application project
 https://github.com/<username>/b2m-java
 ```
 
-Clone `b2m-java` lab repository using:
+Clone `b2m-java` lab repository to your home directory using:
 
 ```
-git clone https://github.ibm.com/<username>/b2m-java
+cd
+git clone https://github.com/<username>/b2m-java
 ```
 
 Most of the commands in this lab should be executed from the `b2m-java` directory:

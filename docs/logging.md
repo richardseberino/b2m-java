@@ -171,6 +171,9 @@ Commit your changes to your GiHub repository:
 
 ```
 cd ~/b2m-java
+git config --global user.email "<your_github_email>"
 git commit -am "I added logging to my app!"
 git push
 ```
+
+Access your Github via web browser and verify that you see recent updates and history of changes.

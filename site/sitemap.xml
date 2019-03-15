@@ -2,27 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://rafal-szypulka.github.io/b2m-java/</loc>
-     <lastmod>2019-03-08</lastmod>
+     <lastmod>2019-03-15</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rafal-szypulka.github.io/b2m-java/logging/</loc>
-     <lastmod>2019-03-08</lastmod>
+     <lastmod>2019-03-15</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rafal-szypulka.github.io/b2m-java/monitoring-instrumentation/</loc>
-     <lastmod>2019-03-08</lastmod>
+     <lastmod>2019-03-15</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rafal-szypulka.github.io/b2m-java/Prometheus-Grafana/</loc>
-     <lastmod>2019-03-08</lastmod>
+     <lastmod>2019-03-15</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://rafal-szypulka.github.io/b2m-java/ICP/</loc>
-     <lastmod>2019-03-08</lastmod>
+     <lastmod>2019-03-15</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

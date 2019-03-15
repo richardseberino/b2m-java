@@ -8,37 +8,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns="/checkout")
+@WebServlet(urlPatterns = "/checkout")
 
 public class checkout extends HttpServlet {
-    
-	private static final long serialVersionUID = 1L;
 
- 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  private static final long serialVersionUID = 1L;
 
-        int delay = (int)(Math.random() * 200); // simulated transaction delay 
-        boolean errorState = (Math.random() * 100) > 5 ? true : false;
-        String msg;
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        try {
-		    Thread.sleep((long)(delay));
-        } catch (InterruptedException e) {
-        }
+    int delay = (int) (Math.random() * 200); // simulated transaction delay
+    boolean errorState = (Math.random() * 100) > 5 ? true : false;
+    String msg;
 
-        if ( errorState ) {
-          msg = "RSAP0001I: Transaction OK.";
-          //logger.severe(msg);
-          response.setContentType("application/json");
-		
-          PrintWriter pw = response.getWriter();
-          pw.print("{ \"status\": \"" + msg +"\", \"transactionTime\": \"" + delay + "ms\" }");
-          pw.flush();
+    try {
+      Thread.sleep((long) (delay));
+    } catch (InterruptedException e) {
+    }
 
-        } else {
-          msg = "RSAP0010E: Severe problem detected.";
-          //logger.severe(msg);
-          response.sendError(500, msg);
-        }
-	}
+    if (errorState) {
+      msg = "RSAP0001I: Transaction OK.";
+      // logger.severe(msg);
+      response.setContentType("application/json");
+
+      PrintWriter pw = response.getWriter();
+      pw.print("{ \"status\": \"" + msg + "\", \"transactionTime\": \"" + delay + "ms\" }");
+      pw.flush();
+
+    } else {
+      msg = "RSAP0010E: Severe problem detected.";
+      // logger.severe(msg);
+      response.sendError(500, msg);
+    }
+  }
 
 }
