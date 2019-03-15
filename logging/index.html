@@ -509,14 +509,14 @@ WLP_LOGGING_CONSOLE_LOGLEVEL=info
 <p>Remember to compare your changes to <code>src/main/java/application/rsapp/checkout.java</code> with <code>final/checkout-complete.java</code>.
 Verify your <code>Dockerfile</code> with <code>final/Dockerfile</code>.</p>
 <p>Re-build the <code>target/rsapp.war</code> file with:</p>
-<div class="codehilite"><pre><span></span>cd b2m-java
+<div class="codehilite"><pre><span></span>cd ~/b2m-java
 mvn clean install
 </pre></div>
 
 
 <h2 id="create-a-docker-image-for-java-application">Create a Docker image for java application<a class="headerlink" href="#create-a-docker-image-for-java-application" title="Permanent link">&para;</a></h2>
 <p>Use modified <code>Dockerfile</code> to build application container:</p>
-<div class="codehilite"><pre><span></span>cd b2m-java
+<div class="codehilite"><pre><span></span>cd ~/b2m-java
 docker build -t b2m-java .
 </pre></div>
 
@@ -599,6 +599,10 @@ git push
 
 
 <p>Access your Github via web browser and verify that you see recent updates and history of changes.</p>
+<p>Stop and remove the java app Docker container before starting the next exercise.</p>
+<div class="codehilite"><pre><span></span>docker stop btm-java
+docker rm btm-java
+</pre></div>
                 
                   
                 

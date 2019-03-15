@@ -392,7 +392,7 @@
 </pre></div>
 
 
-<p>and edit the app server configuration file <code>src/main/liberty/config/server.xml</code>.</p>
+<p>and edit the application server configuration file <code>src/main/liberty/config/server.xml</code>.</p>
 <p>Uncomment these three lines:</p>
 <div class="codehilite"><pre><span></span>        <span class="nt">&lt;feature&gt;</span>mpMetrics-1.1<span class="nt">&lt;/feature&gt;</span>
         <span class="nt">&lt;feature&gt;</span>monitor-1.0<span class="nt">&lt;/feature&gt;</span>
@@ -401,7 +401,7 @@
 
 
 <p>Test the application locally:</p>
-<div class="codehilite"><pre><span></span>cd b2m-java
+<div class="codehilite"><pre><span></span>cd ~/b2m-java
 mvn clean install
 mvn liberty:run-server
 </pre></div>
@@ -432,7 +432,11 @@ base:gc_scavenge_time_seconds 0.463
 
 
 <p>Stop the WLP server with <code>ctrl-c</code> and build the docker image using provided <code>Dockerfile</code>:</p>
-<div class="codehilite"><pre><span></span>docker build -t b2m-java .
+<div class="codehilite"><pre><span></span>docker stop btm-java
+docker rm btm-java
+docker build -t b2m-java .
+docker run --name btm-java -d -p 9080:9080 --log-driver=gelf \
+--log-opt gelf-address=udp://localhost:5000 b2m-java
 </pre></div>
 
 
