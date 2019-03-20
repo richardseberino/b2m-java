@@ -22,35 +22,89 @@ The `b2m-java` application container image has been uploaded to public Docker Hu
 
 ### Deploy b2m-java application to the ICP cluster
 
-Review provided YAML file `b2m-java-icp.yml` and use it to deploy the application to IBM Cloud Private cluster. `b2m-java` deployment object will pull application image container `rszypulka/b2m-java` from Docker Hub.
+IBM provides helm charts for WebSphere Liberty and Open Liberty. These helm charts simplify configuration of monitoring and logging and allow to enable built-in [monitoring](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_mp_metrics_monitor.html) and [logging](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html) features of Liberty without manual modification of Liberty config files we did earlier. WebSphere Liberty provides also a [health feature](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_microprofile_healthcheck.html) that allows to implement application health checks and expose a health API that can be used by kubernetes [liveness probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/) as well as external monitoring tools. 
+
+Setup your CLI environment:
 
 ```
-kubectl apply -f b2m-java-icp.yml
+cloudctl login -a https://<ICP_CLUSTER_IP>:8443
 ```
+replace <ICP_CLUSTER_IP> with the IP address of you ICP cluster.
 
-Verify deployment status.
-
-```
-$ kubectl get deploy b2m-java
-NAME         DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-b2m-java   1         1         1            1           4h
-```
-
-Find the external IP of the worker node where the pod is running (look for column `NODE`.
+Verify you can connect your helm client with tiller running in the ICP cluster:
 
 ```
-kubectl get pod <pod_name> -o wide
+$ helm version --tls
+Client: &version.Version{SemVer:"v2.9.1", GitCommit:"20adb27c7c5868466912eebdf6664e7390ebe710", GitTreeState:"clean"}
+Server: &version.Version{SemVer:"v2.9.1+icp", GitCommit:"8ddf4db6a545dc609539ad8171400f6869c61d8d", GitTreeState:"clean"}
 ```
 
-Get the external `NodePort`.
+Run the following command to deploy our java application on ICP Cluster:
 
 ```
-kubect get svc b2m-java
+helm install --name btm-java --namespace default ibm-charts/ibm-open-liberty \
+--set monitoring.enabled=true \
+--set image.repository=rszypulka/b2m-java \
+--set image.tag=latest,ssl.enabled=false \
+--set ssl.useClusterSSLConfiguration=false \
+--set ssl.createClusterSSLConfiguration=false \
+--set service.port='9080' --set service.targetPort='9080' \
+--set ingress.enabled=false \
+--set jmsService.enabled=false \
+--set iiopService.enabled=false \
+--set logs.persistLogs=false \
+--set logs.persistTransactionLogs=false \
+--set autoscaling.enabled=false \
+--set resources.constraints.enabled=false \
+--set microprofile.health.enabled=true \
+--set sessioncache.hazelcast.enabled=false \
+--set license=accept --tls
 ```
 
-Use the browser to access the application URL: `http://<node_external_ip>:<external_nodeport>` 
+The command above is just an example and helm chart for WebSphere Liberty provides more options. More information [here](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty).
+You can also deploy the WebSphere Liberty helm chart from the ICP Catalog.
 
+Verify status of `btm-java` helm release:
 
+```
+$ helm status btm-java --tls
+LAST DEPLOYED: Mon Mar 18 15:44:31 2019
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/ConfigMap
+NAME                      DATA  AGE
+btm-java-ibm-open-libert  5     1h
+
+==> v1/Service
+NAME                      TYPE      CLUSTER-IP  EXTERNAL-IP  PORT(S)         AGE
+btm-java-ibm-open-libert  NodePort  10.0.0.122  <none>       9080:31936/TCP  1h
+
+==> v1/Deployment
+NAME                      DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+btm-java-ibm-open-libert  1        1        1           1          1h
+
+==> v1/Pod(related)
+NAME                                      READY  STATUS   RESTARTS  AGE
+btm-java-ibm-open-libert-b6cdbbd59-qw58b  1/1    Running  0         1h
+```
+
+Get the application URL by running these commands:
+```
+export NODE_PORT=$(kubectl get --namespace default \
+-o jsonpath="{.spec.ports[0].nodePort}" services btm-java-ibm-open-libert)
+
+export NODE_IP=$(kubectl get nodes -l proxy=true \
+-o jsonpath="{.items[0].status.addresses[?(@.type==\"Hostname\")].address}")
+
+echo http://$NODE_IP:$NODE_PORT
+```
+
+Use an internet browser or `curl` to access:
+- Application URL: `http://$NODE_IP:$NODE_PORT/rsapp/checkout`
+- Prometheus metrics URL: `http://$NODE_IP:$NODE_PORT/metrics`
+- Health API URL: `http://$NODE_IP:$NODE_PORT/health`
 
 ## Enable monitoring using ICP Prometheus and Grafana
 
@@ -83,18 +137,25 @@ Access the ICP Grafana console and verify it properly shows metrics.
 
 ## Define kubernetes liveness probe for use with built-in application health check
 
-The provided `b2m-java-icp.yml` deployment YAML file defines the [liveness probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#define-a-liveness-http-request) that use the implemented `/health` route.
+The WebSphere Liberty helm chart configures a default liveness and readiness probes that checks `/health` route. It can be modified if needed both during helm chart deployment (by configuring image.readinessProbe and image.livenessProbe parameters) or by editing the application deployment. The application container is considered healthy if connection can be established and http response code equals `200`, otherwise it's considered a failure.
 
+More information about configuring liveness and readiness probes can be found [here](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/).
+
+The default liveness probe definition:
 ```
-   livenessProbe:
-     httpGet:
-       path: /health
-       port: 3001
-     initialDelaySeconds: 3
-     periodSeconds: 10
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: 9080
+            scheme: HTTP
+          initialDelaySeconds: 20
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 1
 ```
 Check the URL: `http://<node_external_ip>:<external_nodeport>/health` to verify current health status.
 
->Expected output: `{"status":"ok"}`
+>Expected output: `{"checks":[],"outcome":"UP"}`
 
 

@@ -65,7 +65,7 @@ docker run --name btm-java -d -p 9080:9080 --log-driver=gelf \
 --log-opt gelf-address=udp://localhost:5000 b2m-java
 ```
 
-Commit your changes to your GiHub repository:
+Commit the changes to your GiHub repository:
 
 ```
 cd ~/b2m-java

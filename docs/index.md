@@ -7,12 +7,13 @@ Instrumentation of the application code for monitoring and logging is part of th
 ## Lab outline
 
 - Fork and clone the Github repository with a simple java servlet and review the source code
-- Configure logging library and add log messages to the application code
+- Configure a logging library and add log messages to the application code
 - Enable monitoring features of the WebSphere Liberty Profile
 - Build the application with Apache Maven
 - Configure and run Elastic stack in Docker Compose
 - Configure and run Prometheus and Grafana stack in Docker Compose
 - Build the java application container and integrate with Prometheus and ELK stack
+- Deploy to IBM Cloud Private using helm chart
 
 ## Prerequisites
 Install the following software on your workstation or use a provided VM.
