@@ -401,7 +401,7 @@
                 <h3 id="deploy-a-local-prometheus-and-grafana-stack-with-docker-compose">Deploy a local Prometheus and Grafana stack with Docker Compose<a class="headerlink" href="#deploy-a-local-prometheus-and-grafana-stack-with-docker-compose" title="Permanent link">&para;</a></h3>
 <p>During this lab we will run the Prometheus and Grafana in  Docker Compose.
 Configuration for this lab is based on <a href="https://github.com/vegasbrianc/prometheus">https://github.com/vegasbrianc/prometheus</a>.
-Prometheus docker compose project is located <code>/root/prometheus</code></p>
+In the lab VM the Prometheus docker compose project was cloned to <code>/root/prometheus</code>.</p>
 <p>1). Add scraping job definition to the Prometheus configuration file <code>prometheus/prometheus/prometheus.yml</code> by adding (uncommenting in the lab VM) the following code within <code>scrape_config</code> section:</p>
 <div class="codehilite"><pre><span></span>  - job_name: &#39;btm-java&#39;
     scrape_interval: 20s
@@ -445,7 +445,13 @@ Creating prometheus_grafana_1       ... done
 <li>access: browser</li>
 </ul>
 <h2 id="configure-dashboard">Configure dashboard<a class="headerlink" href="#configure-dashboard" title="Permanent link">&para;</a></h2>
-<p>Grafana Dashboard to <a href="http://docs.grafana.org/reference/export_import/#importing-a-dashboard">import</a>: <code>ibm-open-liberty-grafana-dashboard.json</code></p>
+<p>Grafana Dashboard to <a href="http://docs.grafana.org/reference/export_import/#importing-a-dashboard">import</a>: <code>~/b2m-java/ibm-open-liberty-grafana-dashboard.json</code></p>
+<p>Generate application traffic using provided script:</p>
+<div class="codehilite"><pre><span></span>cd ~/b2m-java
+./load_test.sh
+</pre></div>
+
+
 <p>Expected views:
 CPU &amp; Memory utilization for Liberty Profile:
 <img alt="" src="../images/prometheus-liberty1.png" /></p>

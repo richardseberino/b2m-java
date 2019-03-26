@@ -578,9 +578,13 @@ Creating docker-elk_logstash_1      ... done
 </pre></div>
 
 
-<p>Simulate a couple fo transactions using <code>Firefox</code> or <code>curl</code> by accessing <code>http://localhost:9080/rsapp/checkout</code> and check if you can see application log records in Kibana.</p>
+<p>Simulate a couple fo transactions using <code>Firefox</code> or <code>curl</code> by accessing <code>http://localhost:9080/rsapp/checkout</code>:</p>
+<div class="codehilite"><pre><span></span>for i in {1..10}; do curl http://localhost:9080/rsapp/checkout; done
+</pre></div>
+
+
+<p>and check if you can see application log records in <code>Kibana-&gt;Dashboards-Liberty-traffic</code>.</p>
 <p>In the lab vm environment, the Elastic stack has been preconfigured, so the example Dashboard and Visualizations should be available in Kibana out of the box.</p>
-<p>Simulate a couple of transactions using <code>Firefox</code> or <code>curl</code> by accessing <code>http://localhost:9080/rsapp/checkout</code> and check the Kibana dashboard: <code>Liberty Traffic</code>:</p>
 <p><img alt="" src="../images/kibana-liberty-traffic.png" />
 and <code>Liberty problems</code>:</p>
 <p><img alt="" src="../images/kibana-liberty-problems.png" /></p>
