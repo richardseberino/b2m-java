@@ -525,8 +525,8 @@ docker build -t b2m-java .
 <p>The following procedure shows how to send the application logs to the local Elastic stack running in Docker.</p>
 <h3 id="deploy-a-local-elastic-stack-with-docker-compose">Deploy a local Elastic stack with Docker Compose<a class="headerlink" href="#deploy-a-local-elastic-stack-with-docker-compose" title="Permanent link">&para;</a></h3>
 <p>During this lab we will run the Elastic Stack (Elasticsearch, Logstash, Kibana) in the Docker Compose.
-Configuration for this lab is based on https://github.com/deviantony/docker-elk.
-Elastic stack docker compose project in located <code>/root/docker-elk</code></p>
+Configuration for this lab is based on <a href="https://github.com/deviantony/docker-elk">https://github.com/deviantony/docker-elk</a>.
+In the lab VM the Elastic Stack docker compose project was cloned to <code>/root/docker-elk</code>.</p>
 <p>Briefly review the simple logstash configuration we use for this lab: <code>/root/docker-elk/logstash/pipeline/logstash.conf</code>:</p>
 <div class="codehilite"><pre><span></span>input {
     gelf { port =&gt; 5000 }
