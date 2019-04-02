@@ -1,5 +1,6 @@
 package application.rsapp;
 
+import java.util.logging.Logger;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/checkout")
 
 public class checkout extends HttpServlet {
+
+  Logger logger = Logger.getLogger("rsapp.checkout");
 
   private static final long serialVersionUID = 1L;
 
@@ -27,7 +30,7 @@ public class checkout extends HttpServlet {
 
     if (errorState) {
       msg = "RSAP0001I: Transaction OK.";
-      // logger.info(msg);
+      logger.info(msg);
       response.setContentType("application/json");
 
       PrintWriter pw = response.getWriter();
@@ -36,7 +39,7 @@ public class checkout extends HttpServlet {
 
     } else {
       msg = "RSAP0010E: Severe problem detected.";
-      // logger.severe(msg);
+      logger.severe(msg);
       response.sendError(500, msg);
     }
   }
