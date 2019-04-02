@@ -92,8 +92,8 @@ The following procedure shows how to send the application logs to the local Elas
 ### Deploy a local Elastic stack with Docker Compose
 
 During this lab we will run the Elastic Stack (Elasticsearch, Logstash, Kibana) in the Docker Compose.
-Configuration for this lab is based on https://github.com/deviantony/docker-elk.
-Elastic stack docker compose project in located `/root/docker-elk`
+Configuration for this lab is based on [https://github.com/deviantony/docker-elk](https://github.com/deviantony/docker-elk).
+In the lab VM the Elastic Stack docker compose project was cloned to `/root/docker-elk`.
 
 Briefly review the simple logstash configuration we use for this lab: `/root/docker-elk/logstash/pipeline/logstash.conf`:
 
@@ -141,7 +141,7 @@ Creating docker-elk_logstash_1      ... done
 ```
 2). Verify you can access Kibana on `http://localhost:5601`.
 
-### Start the node.js application container and forward logs to Elastic stack
+### Start the java application container and forward logs to Elastic stack
 
 Start the application container with this command:
 
@@ -150,11 +150,13 @@ docker run --name btm-java -d -p 9080:9080 --log-driver=gelf \
 --log-opt gelf-address=udp://localhost:5000 b2m-java
 ```
 
-Simulate a couple fo transactions using `Firefox` or `curl` by accessing `http://localhost:9080/rsapp/checkout` and check if you can see application log records in Kibana.
+Simulate a couple fo transactions using `Firefox` or `curl` by accessing `http://localhost:9080/rsapp/checkout`:
+```
+for i in {1..10}; do curl http://localhost:9080/rsapp/checkout; done
+```
+and check if you can see application log records in `Kibana -> Dashboards -> Liberty-traffic`.
 
 In the lab vm environment, the Elastic stack has been preconfigured, so the example Dashboard and Visualizations should be available in Kibana out of the box.
-
-Simulate a couple of transactions using `Firefox` or `curl` by accessing `http://localhost:9080/rsapp/checkout` and check the Kibana dashboard: `Liberty Traffic`:
 
 ![](images/kibana-liberty-traffic.png)
 and `Liberty problems`:
@@ -165,7 +167,7 @@ In case of problems, you can also import Kibana configuration using provided Kib
 
 - Go to Kibana: `http://localhost:5601`
 - Click on Management -> Saved Objects -> Import
-- Select `btm-nodejs-kibana.json`
+- Select `ibm-open-liberty-kibana5-problems-dashboard.json` and then `ibm-open-liberty-kibana5-problems-dashboard.json`
 
 Commit your changes to your GiHub repository:
 

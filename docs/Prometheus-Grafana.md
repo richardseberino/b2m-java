@@ -2,7 +2,7 @@
 
 During this lab we will run the Prometheus and Grafana in  Docker Compose.
 Configuration for this lab is based on [https://github.com/vegasbrianc/prometheus](https://github.com/vegasbrianc/prometheus).
-Prometheus docker compose project is located `/root/prometheus`
+In the lab VM the Prometheus docker compose project was cloned to `/root/prometheus`.
 
 1). Add scraping job definition to the Prometheus configuration file `prometheus/prometheus/prometheus.yml` by adding (uncommenting in the lab VM) the following code within `scrape_config` section:
 
@@ -56,7 +56,14 @@ Verify the prometheus datasource configuration in Grafana. If it was not already
 
 ## Configure dashboard
 
-Grafana Dashboard to [import](http://docs.grafana.org/reference/export_import/#importing-a-dashboard): `ibm-open-liberty-grafana-dashboard.json`
+Grafana Dashboard to [import](http://docs.grafana.org/reference/export_import/#importing-a-dashboard): `~/b2m-java/ibm-open-liberty-grafana-dashboard.json`
+
+Generate application traffic using provided script:
+
+```
+cd ~/b2m-java
+./load_test.sh
+```
 
 Expected views:
 CPU & Memory utilization for Liberty Profile:

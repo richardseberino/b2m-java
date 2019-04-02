@@ -307,8 +307,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#start-the-nodejs-application-container-and-forward-logs-to-elastic-stack" title="Start the node.js application container and forward logs to Elastic stack" class="md-nav__link">
-    Start the node.js application container and forward logs to Elastic stack
+  <a href="#start-the-java-application-container-and-forward-logs-to-elastic-stack" title="Start the java application container and forward logs to Elastic stack" class="md-nav__link">
+    Start the java application container and forward logs to Elastic stack
   </a>
   
 </li>
@@ -420,8 +420,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#start-the-nodejs-application-container-and-forward-logs-to-elastic-stack" title="Start the node.js application container and forward logs to Elastic stack" class="md-nav__link">
-    Start the node.js application container and forward logs to Elastic stack
+  <a href="#start-the-java-application-container-and-forward-logs-to-elastic-stack" title="Start the java application container and forward logs to Elastic stack" class="md-nav__link">
+    Start the java application container and forward logs to Elastic stack
   </a>
   
 </li>
@@ -525,8 +525,8 @@ docker build -t b2m-java .
 <p>The following procedure shows how to send the application logs to the local Elastic stack running in Docker.</p>
 <h3 id="deploy-a-local-elastic-stack-with-docker-compose">Deploy a local Elastic stack with Docker Compose<a class="headerlink" href="#deploy-a-local-elastic-stack-with-docker-compose" title="Permanent link">&para;</a></h3>
 <p>During this lab we will run the Elastic Stack (Elasticsearch, Logstash, Kibana) in the Docker Compose.
-Configuration for this lab is based on https://github.com/deviantony/docker-elk.
-Elastic stack docker compose project in located <code>/root/docker-elk</code></p>
+Configuration for this lab is based on <a href="https://github.com/deviantony/docker-elk">https://github.com/deviantony/docker-elk</a>.
+In the lab VM the Elastic Stack docker compose project was cloned to <code>/root/docker-elk</code>.</p>
 <p>Briefly review the simple logstash configuration we use for this lab: <code>/root/docker-elk/logstash/pipeline/logstash.conf</code>:</p>
 <div class="codehilite"><pre><span></span>input {
     gelf { port =&gt; 5000 }
@@ -571,16 +571,20 @@ Creating docker-elk_logstash_1      ... done
 
 
 <p>2). Verify you can access Kibana on <code>http://localhost:5601</code>.</p>
-<h3 id="start-the-nodejs-application-container-and-forward-logs-to-elastic-stack">Start the node.js application container and forward logs to Elastic stack<a class="headerlink" href="#start-the-nodejs-application-container-and-forward-logs-to-elastic-stack" title="Permanent link">&para;</a></h3>
+<h3 id="start-the-java-application-container-and-forward-logs-to-elastic-stack">Start the java application container and forward logs to Elastic stack<a class="headerlink" href="#start-the-java-application-container-and-forward-logs-to-elastic-stack" title="Permanent link">&para;</a></h3>
 <p>Start the application container with this command:</p>
 <div class="codehilite"><pre><span></span>docker run --name btm-java -d -p 9080:9080 --log-driver=gelf \
 --log-opt gelf-address=udp://localhost:5000 b2m-java
 </pre></div>
 
 
-<p>Simulate a couple fo transactions using <code>Firefox</code> or <code>curl</code> by accessing <code>http://localhost:9080/rsapp/checkout</code> and check if you can see application log records in Kibana.</p>
+<p>Simulate a couple fo transactions using <code>Firefox</code> or <code>curl</code> by accessing <code>http://localhost:9080/rsapp/checkout</code>:</p>
+<div class="codehilite"><pre><span></span>for i in {1..10}; do curl http://localhost:9080/rsapp/checkout; done
+</pre></div>
+
+
+<p>and check if you can see application log records in <code>Kibana -&gt; Dashboards -&gt; Liberty-traffic</code>.</p>
 <p>In the lab vm environment, the Elastic stack has been preconfigured, so the example Dashboard and Visualizations should be available in Kibana out of the box.</p>
-<p>Simulate a couple of transactions using <code>Firefox</code> or <code>curl</code> by accessing <code>http://localhost:9080/rsapp/checkout</code> and check the Kibana dashboard: <code>Liberty Traffic</code>:</p>
 <p><img alt="" src="../images/kibana-liberty-traffic.png" />
 and <code>Liberty problems</code>:</p>
 <p><img alt="" src="../images/kibana-liberty-problems.png" /></p>
@@ -588,7 +592,7 @@ and <code>Liberty problems</code>:</p>
 <ul>
 <li>Go to Kibana: <code>http://localhost:5601</code></li>
 <li>Click on Management -&gt; Saved Objects -&gt; Import</li>
-<li>Select <code>btm-nodejs-kibana.json</code></li>
+<li>Select <code>ibm-open-liberty-kibana5-problems-dashboard.json</code> and then <code>ibm-open-liberty-kibana5-problems-dashboard.json</code></li>
 </ul>
 <p>Commit your changes to your GiHub repository:</p>
 <div class="codehilite"><pre><span></span>cd ~/b2m-java
